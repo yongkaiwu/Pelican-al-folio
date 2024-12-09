@@ -102,7 +102,7 @@ def process_content_fields(page_generator):
         for el in dropdowns:
             for i, child in enumerate(el["children"]):
                 if child != "divider":
-                    str_to_process = child + '{: class="dropdown-item" }'
+                    str_to_process = child
                     el["children"][i] = content_pass(gen, md, str_to_process, strip_p_tags=True)
 
 
