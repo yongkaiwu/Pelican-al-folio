@@ -20,7 +20,7 @@ cd <repo_name>
 3. Install dependencies via `pip`. For interactive local development, also install `invoke`:
 ```
 pip install -r requirements.txt
-pip install invoke
+pip install tornado==6.4.1 invoke==2.2.0 livereload==2.7.0
 ```
 4. Build the website:
 ```
