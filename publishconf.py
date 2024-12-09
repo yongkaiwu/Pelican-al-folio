@@ -4,7 +4,7 @@
 import os
 import sys
 sys.path.append(os.curdir)
-
+from py_code import minify
 from pelicanconf import *
 
 import py_code.urls_publish as urls_publish
@@ -33,6 +33,17 @@ MARKDOWN = {
 
 # TODO: Modify this whole file so that relative and absolute
 # URLs work correctly.
+
+
+# minify
+PLUGINS.append(minify)
+MINIFY = {
+    "remove_comments": True,
+    "reduce_boolean_attributes": True,
+    "reduce_empty_attributes": True,
+    "remove_optional_attribute_quotes": True,
+    "convert_charrefs": True,
+}
 
 # If your site is available via HTTPS, make sure SITEURL begins with https://
 if SITE["baseurl"] is not None:
