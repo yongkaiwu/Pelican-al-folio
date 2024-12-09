@@ -83,8 +83,11 @@ def parse_bibliography(filename, output_key, SITE):
             if field in d.fields:
                 d.fields.pop(field)
 
-        md = Markdown(extensions=['extra', 'codehilite'])
-        md_code = "```\n:::bibtex\n" + d.to_string("bibtex") + "\n```"
+        md = Markdown(
+            extensions=['extra', 'codehilite'], 
+            extension_configs={'codehilite': {'css_class': 'highlight'}}
+            )
+        md_code = "```bibtex\n" + d.to_string("bibtex") + "\n```"
         entry["bibtex"] = md.convert(md_code)
         entries.append(entry)
 
