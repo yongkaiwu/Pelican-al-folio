@@ -33,15 +33,19 @@
 
 {% endmacro %}
 
-{% macro talk_list( talks, nodivide=false) -%}
+{% macro talk_list(nodivide=false) -%}
           <div class="talks">
-            <ol class="talks">
-              <li>
-                {% for entry in talks %}
-                  <h2 class="talks">&nbsp;</h2>
-                  {{ talk(entry, loop.last, nodivide) }}
-                {% endfor %}
-              </li>
-            </ol>
+            {% if talks is not none -%}
+              <ol class="talks">
+                <li>
+                  {% for entry in talks %}
+                    <h2 class="talks">&nbsp;</h2>
+                    {{ talk(entry, loop.last, nodivide) }}
+                  {% endfor %}
+                </li>
+              </ol>
+            {%- else -%}
+            <p>No news so far...</p>
+            {%- endif %}
           </div>
 {% endmacro %}

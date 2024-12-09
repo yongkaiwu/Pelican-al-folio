@@ -101,7 +101,7 @@ PAGINATION_PATTERNS = (
 # Should extend to getting all data from the folder 
 SITE["data"] = {}
 
-for data_name in ["cv", "venues", "coauthors", "talks"]:
+for data_name in ["cv", "venues", "coauthors"]:
     with open(f"content/data/{data_name}.yml", "rb") as stream:
         SITE["data"][data_name] = yaml.safe_load(stream)
 

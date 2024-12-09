@@ -81,6 +81,21 @@ def process_content_fields(page_generator):
             except Exception as e:
                 log.error(f"Error loading news! {e}")
 
+    # Load talks
+    key = "pages/talks.md"
+    if key in gen.context["generated_content"]:
+        article = gen.context["generated_content"][key]
+        fields_to_process = [('venue', False)]
+
+        if "entries" in article.metadata:
+            try:
+                for element in article.metadata["entries"]:
+                    for field, strip_p_tags in fields_to_process:
+                        element[field] = content_pass(gen, md, element[field], strip_p_tags=strip_p_tags)
+                gen.context["talks"] = article.metadata["entries"]
+            except Exception as e:
+                log.error(f"Error loading talks! {e}")
+
     dropdowns = [] 
     if "dropdowns" in gen.context["SITE"]: 
         dropdowns = gen.context["SITE"]["dropdowns"]
