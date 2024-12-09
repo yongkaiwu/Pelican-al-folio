@@ -144,9 +144,9 @@
               {%- for field in entry.button_fields -%}
                 {% set fc = entry.button_fields[field] -%}
                 {% if not fc.relative -%}
-                <a href="{{ fc.link }}" class="btn btn-sm z-depth-0" role="button">{{ field | capitalize}}</a>
+                <a href="{{ fc.link }}" class="btn btn-sm z-depth-0" target="_blank" role="button">{{ field | capitalize}}</a>
                 {%- else -%}
-                <a href="{{ fc.link | relative_url }}" class="btn btn-sm z-depth-0" role="button">{{field | capitalize}}</a>
+                <a href="{{ fc.link | relative_url }}" class="btn btn-sm z-depth-0" target="_blank" role="button">{{field | capitalize}}</a>
                 {%- endif %}
               {%- endfor %}
             </div>
