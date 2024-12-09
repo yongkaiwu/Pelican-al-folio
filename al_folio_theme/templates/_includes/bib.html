@@ -172,13 +172,16 @@
 
 {% macro pub_list( publications, nodivide=false ) -%}
           <div class="publications">
-            <ol class="bibliography">
-              <li>
-                {% for entry in publications %}
-                  <h2 class="bibliography">&nbsp;</h2>
-                  {{ bib_entry(entry, loop.last, nodivide) }}
-                {% endfor %}
-              </li>
-            </ol>
+            {% set ns = namespace(current_year="2066") %}
+            {% for entry in publications | sort(attribute='year', reverse=True) %}
+              {% if entry.year != ns.current_year %}
+                {% if not loop.first %}</ol>{% endif %}
+                <h2 class="bibliography">{{ entry.year }}</h2>
+                <ol class="bibliography">
+                {% set ns.current_year = entry.year %}
+              {% endif %}
+              <li>{{ bib_entry(entry, loop.last, nodivide) }}</li>
+              {% if loop.last %}</ol>{% endif %}
+            {% endfor %}
           </div>
 {% endmacro %}
